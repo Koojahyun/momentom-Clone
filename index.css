@@ -1,9 +1,21 @@
 body {
   background-color: #2c3e50;
   color: white;
+  text-align: center;
+  font-family: "Noto Sans KR", sans-serif;
 }
 h1 {
-  color: White;
+  font-size: 50pt;
+  color: white;
+}
+
+.greetings {
+  font-size: 20pt;
+  color: #2c3e50;
+}
+
+.js-clock {
+  margin-top: 10%;
 }
 
 .form,
@@ -22,6 +34,10 @@ h1 {
   to {
     opacity: 1;
   }
+}
+
+.js-toDoList {
+  list-style-type: none;
 }
 
 .bgImage {
