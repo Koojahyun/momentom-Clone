@@ -7,6 +7,7 @@ const AIR_API_KEY =
   "iLYuVs8WYcDOzn9JW6GMSd7DHVVon2A52yMPRs7fkEzQfXGasXiNySwup6teqbgGqLFZgKsgTpSnNGS6yineyg%3D%3D";
 
 const LOCATION_API_KEY = "AIzaSyBEPuOLDxq6dcpImC3GAtrGzKfo3ivMcv0";
+
 function getWeather(lat, lon) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
@@ -95,7 +96,7 @@ function getSido(lat, lon) {
 
 function getAir(sidoName) {
   fetch(
-    `http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json&callback=?`
+    `https://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json`
   )
     .then(function(response) {
       return response.json();
@@ -117,6 +118,9 @@ function getAir(sidoName) {
       } else if (air === "4") {
         airpollution.innerHTML = `미세먼지 농도 매우나쁨`;
       }
+    })
+    .catch(function(error) {
+      console.log("Request Failed", error);
     });
 }
 
