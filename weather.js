@@ -93,11 +93,31 @@ function getSido(lat, lon) {
       getAir(sidoName);
     });
 }
-
 function getAir(sidoName) {
   fetch(
     `http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json`
   )
+    // $.ajax({
+    //   url: `http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json`,
+    //   datatype: "jsonp",
+
+    //   success: function(data) {
+    //     const air = data.list[0].pm25Grade1h;
+    //     console.log(air);
+    //     if (air === "1") {
+    //       airpollution.innerHTML = `미세먼지 농도 좋음`;
+    //     } else if (air === "2") {
+    //       airpollution.innerHTML = `미세먼지 농도 보통`;
+    //     } else if (air === "3") {
+    //       airpollution.innerHTML = `미세먼지 농도 나쁨`;
+    //     } else if (air === "4") {
+    //       airpollution.innerHTML = `미세먼지 농도 매우나쁨`;
+    //     }
+    //   },
+    //   error: function(xhr) {
+    //     console.log("failed", xhr);
+    //   }
+    // });
     .then(function(response) {
       return response.json();
     })
@@ -106,7 +126,7 @@ function getAir(sidoName) {
       //   return properties.item.includes("pm10Grade1H");
       // });
       // const air = filtered_array.length ? filtered_array[0].pm10Grade1H : "";
-      //const air = json.pm10Grade1H;
+      // const air = json.pm10Grade1H;
       const air = json.list[0].pm25Grade1h;
       console.log(air);
       if (air === "1") {
@@ -122,6 +142,14 @@ function getAir(sidoName) {
     .catch(function(error) {
       console.log("Request Failed", error);
     });
+  // var xhr = new XMLHttpRequest();
+  // xhr.open(
+  //   "GET",
+  //   `http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json`,
+  //   true
+  // );
+  // console.log("success");
+  // xhr.send();
 }
 
 function askForCoords() {
