@@ -96,7 +96,7 @@ function getSido(lat, lon) {
 
 function getAir(sidoName) {
   fetch(
-    `https://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json`
+    `http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=${sidoName}&pageNo=1&numOfRows=10&ServiceKey=${AIR_API_KEY}&ver=1.3&_returnType=json`
   )
     .then(function(response) {
       return response.json();
